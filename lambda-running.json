@@ -1,0 +1,8 @@
+{
+  "layerMappings": {
+    "/opt/nodejs": "layers/common"
+  },
+  "envFiles": [".env"],
+  "ignoreLayerFilesOnScan": true,
+  "debug": false
+}

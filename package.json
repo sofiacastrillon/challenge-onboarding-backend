@@ -1,0 +1,61 @@
+{
+  "name": "cdk-skeleton",
+  "version": "1.0.2",
+  "bin": {
+    "cdk-skeleton": "bin/cdk-skeleton.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest --maxWorkers=10% --testPathIgnorePatterns=\\.integration\\.",
+    "test:all": "jest --maxWorkers=10%",
+    "cdk": "cdk",
+    "deploy": "npm run compile-layer && cdk deploy --all --require-approval never",
+    "destroy": "cdk destroy --all",
+    "lint": "eslint . && tsc --noEmit",
+    "compile-layer": "tsc --project ./layers/common/tsconfig.json && ncp ./layers/common/node_modules ./dist/layers/common/nodejs/node_modules",
+    "prepare": "husky install",
+    "dev": "lambda-run ui",
+    "prettify": "prettier --write .",
+    "install-layers": "cd layers/common && npm ci",
+    "postinstall": "npm run install-layers",
+    "synth": "cdk synth",
+    "diff": "cdk diff"
+  },
+  "devDependencies": {
+    "@alegradev/cdkless": "^1.0.0",
+    "@aws-sdk/client-dynamodb": "^3.830.0",
+    "@aws-sdk/client-s3": "^3.830.0",
+    "@aws-sdk/client-sns": "^3.830.0",
+    "@aws-sdk/lib-dynamodb": "^3.830.0",
+    "@faker-js/faker": "^9.8.0",
+    "@types/aws-lambda": "^8.10.150",
+    "@types/jest": "^29.5.14",
+    "@types/node": "22.7.9",
+    "@types/prettier": "^3.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.34.1",
+    "aws-cdk": "2.1103.0",
+    "dotenv": "^16.5.0",
+    "esbuild": "^0.27.3",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.5.0",
+    "husky": "^9.1.7",
+    "jest": "^29.7.0",
+    "lambda-running": "^0.2.7",
+    "ncp": "^2.0.0",
+    "prettier": "^3.5.3",
+    "reflect-metadata": "^0.2.2",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.6.3",
+    "uuid": "^11.1.0"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "2.238.0",
+    "constructs": "^10.0.0"
+  }
+}

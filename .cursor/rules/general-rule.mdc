@@ -1,0 +1,31 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Before executing any action, generating code, or suggesting changes, the AI must first check if there is an applicable prompt inside the /prompts folder.
+
+Instructions:
+Identify the type of action to be performed:
+
+Are you creating a new use case?
+
+Adding a new domain entity or module?
+
+Modifying or extending existing functionality?
+
+Creating a new infrastructure adapter?
+
+Search within the /prompts folder for a file whose name or description matches the intended action.
+Examples:
+
+Action: Create a new use case → Prompt: prompts/new_use_case.md
+
+Action: Add DynamoDB adapter → Prompt: prompts/new_infra_adapter.md
+
+If a relevant prompt is found, strictly follow its instructions before proceeding with any code generation or execution.
+
+If no prompt exists, proceed with the user's request directly.
+
+If the instruction is to implement or modify a new use case, after finishing, update the status of the use case in the .md
+

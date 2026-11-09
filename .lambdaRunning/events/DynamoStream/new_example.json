@@ -1,0 +1,104 @@
+{
+  "eventID": "2fafebeea7c3b72db8b8ce121014d5b9",
+  "eventName": "MODIFY",
+  "eventVersion": "1.1",
+  "eventSource": "aws:dynamodb",
+  "awsRegion": "us-east-1",
+  "dynamodb": {
+    "ApproximateCreationDateTime": 1751291693,
+    "Keys": {
+      "sk": {
+        "S": "ENTITY#550e8400-e29b-41d4-a716-446655440000#TIMESTAMP#2025-06-30T13:54:51.112Z"
+      },
+      "pk": {
+        "S": "OUTBOX#0197c11e-8068-76da-b389-83b26926665f"
+      }
+    },
+    "NewImage": {
+      "idCompany": {
+        "S": "90207"
+      },
+      "entityType": {
+        "S": "EXAMPLE"
+      },
+      "entityId": {
+        "S": "550e8400-e29b-41d4-a716-446655440000"
+      },
+      "eventType": {
+        "S": "NEW"
+      },
+      "createdAt": {
+        "S": "2025-06-30T13:54:51.113Z"
+      },
+      "retries": {
+        "N": "0"
+      },
+      "payload": {
+        "S": "{\"id\":\"550e8400-e29b-41d4-a716-446655440000\",\"idCompany\":\"90207\",\"name\":\"test\",\"description\":\"test\",\"status\":\"ACTIVE\",\"createdAt\":\"\",\"updatedAt\":\"\"}"
+      },
+      "sk": {
+        "S": "ENTITY#550e8400-e29b-41d4-a716-446655440000#TIMESTAMP#2025-06-30T13:54:51.112Z"
+      },
+      "id": {
+        "S": "0197c11e-8068-76da-b389-83b26926665f"
+      },
+      "pk": {
+        "S": "OUTBOX#0197c11e-8068-76da-b389-83b26926665f"
+      },
+      "status": {
+        "S": "PROCESSED"
+      },
+      "timestamp": {
+        "S": "2025-06-30T13:54:51.112Z"
+      },
+      "updatedAt": {
+        "S": "2025-06-30T13:54:53.834Z"
+      }
+    },
+    "OldImage": {
+      "idCompany": {
+        "S": "90207"
+      },
+      "entityType": {
+        "S": "EXAMPLE"
+      },
+      "entityId": {
+        "S": "550e8400-e29b-41d4-a716-446655440000"
+      },
+      "eventType": {
+        "S": "NEW"
+      },
+      "createdAt": {
+        "S": "2025-06-30T13:54:51.113Z"
+      },
+      "retries": {
+        "N": "0"
+      },
+      "payload": {
+        "S": "{\"id\":\"550e8400-e29b-41d4-a716-446655440000\",\"idCompany\":\"90207\",\"name\":\"test\",\"description\":\"test\",\"status\":\"ACTIVE\",\"createdAt\":\"\",\"updatedAt\":\"\"}"
+      },
+      "sk": {
+        "S": "ENTITY#550e8400-e29b-41d4-a716-446655440000#TIMESTAMP#2025-06-30T13:54:51.112Z"
+      },
+      "id": {
+        "S": "0197c11e-8068-76da-b389-83b26926665f"
+      },
+      "pk": {
+        "S": "OUTBOX#0197c11e-8068-76da-b389-83b26926665f"
+      },
+      "status": {
+        "S": "PENDING"
+      },
+      "timestamp": {
+        "S": "2025-06-30T13:54:51.112Z"
+      },
+      "updatedAt": {
+        "S": "2025-06-30T13:54:51.113Z"
+      }
+    },
+    "SequenceNumber": "56553900000838921985096763",
+    "SizeBytes": 1177,
+    "StreamViewType": "NEW_AND_OLD_IMAGES"
+  },
+  "eventSourceARN": "arn:aws:dynamodb:us-east-1:211971251595:table/outbox-dev/stream/2025-06-18T11:39:31.661"
+}

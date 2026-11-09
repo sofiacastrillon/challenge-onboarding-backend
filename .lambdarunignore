@@ -1,0 +1,41 @@
+# Lambda Running ignore file
+# Files and directories matching these patterns will be ignored when scanning for handlers
+
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+cdk.out
+
+# Tests
+test/
+tests/
+**/*.test.js
+**/*.spec.js
+**/__tests__/
+**/__mocks__/
+
+# Build files
+dist/
+build/
+coverage/
+
+# Config files
+*.config.js
+.eslintrc*
+.prettier*
+
+# Documentation
+docs/
+README.md
+LICENSE
+
+# Version control
+.git/
+.github/
+.gitignore
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
