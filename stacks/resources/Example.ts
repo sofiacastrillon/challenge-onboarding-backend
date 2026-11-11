@@ -5,9 +5,8 @@ import {
   LAMBDAS_BASE_PATH,
 } from '../constants';
 import { Authorizer } from '../Authorizer';
-import { getCommonEnv } from '../utils/Utils';
+import { getCommonEnv, getOutputValueByEnv } from '../utils/Utils';
 import { Env } from '../../layers/common/shared/domain/interfaces/IEnvironment';
-import { getOutputValueByEnv } from '../../layers/common/utils/Utils';
 
 export class Example {
   static build(app: CdkLess) {

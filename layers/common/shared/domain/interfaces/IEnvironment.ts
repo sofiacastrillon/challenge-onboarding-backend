@@ -10,12 +10,15 @@ export const Env = {
   SNS_EXAMPLE_ENTITY_TOPIC_ARN: 'SNS_EXAMPLE_ENTITY_TOPIC_ARN',
   OUTBOX_INTEGRATION_TEST_TABLE_NAME: 'OUTBOX_INTEGRATION_TEST_TABLE_NAME',
   LAMBDA_AUTHORIZER_ARN: 'LAMBDA_AUTHORIZER_ARN',
+  TRAINING_TABLE_NAME: 'TRAINING_TABLE_NAME',
+  TRAINING_TABLE_ARN: 'TRAINING_TABLE_ARN',
 };
 
 enum DynamoTableKeys {
   EXAMPLES = 'examples',
   OUTBOX = 'outbox',
   OUTBOX_INTEGRATION_TEST = 'outbox-integration-test',
+  TRAINING = 'training',
 }
 
 enum SnsTopicKeys {
@@ -43,6 +46,8 @@ export const OutputEnvMap = {
     key: SnsTopicKeys.EXAMPLE_ENTITY,
     suffix: 'arn',
   },
+  [Env.TRAINING_TABLE_NAME]: { key: DynamoTableKeys.TRAINING, suffix: 'name' },
+  [Env.TRAINING_TABLE_ARN]: { key: DynamoTableKeys.TRAINING, suffix: 'arn' },
 };
 
 export type Env = (typeof Env)[keyof typeof Env];

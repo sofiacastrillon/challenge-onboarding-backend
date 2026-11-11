@@ -1,8 +1,7 @@
 import { CdkLess } from '@alegradev/cdkless';
 import { PROJECT_NAME, LAMBDAS_BASE_PATH } from '../constants';
-import { getCommonEnv } from '../utils/Utils';
+import { getCommonEnv, getOutputValueByEnv } from '../utils/Utils';
 import { Env } from '../../layers/common/shared/domain/interfaces/IEnvironment';
-import { getOutputValueByEnv } from '../../layers/common/utils/Utils';
 import { FilterCriteria, StartingPosition } from 'aws-cdk-lib/aws-lambda';
 
 export class Outbox {

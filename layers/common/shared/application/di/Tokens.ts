@@ -3,6 +3,7 @@ export const TOKENS = {
   NotificationService: 'NotificationService',
   StorageRepository: 'StorageRepository',
   ExampleRepository: 'ExampleRepository',
+  TrainingRepository: 'TrainingRepository',
   EventBus: 'EventBus',
 
   // Use Cases
