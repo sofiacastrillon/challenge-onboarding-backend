@@ -1,8 +1,7 @@
 import { CdkLess } from '@alegradev/cdkless';
 import * as dotenv from 'dotenv';
-import { Outbox } from './resources/Outbox';
 import { initializeAuthorizer } from './Authorizer';
-import { Example } from './resources/Example';
+import { Training } from './resources/Training';
 import { Env } from '../layers/common/shared/domain/interfaces/IEnvironment';
 import { getEnv } from '../layers/common/utils/Utils';
 import { PROJECT_NAME } from './constants';
@@ -21,7 +20,8 @@ const app = new CdkLess({
     defaultTags: {
       Project: PROJECT_NAME,
       ProjectName: PROJECT_NAME, // Para los proyectos que ya usaban ProjectName, para no perder el historico del cost explorer
-      Repository: 'https://github.com/alegradev/cdk-example',
+      Repository:
+        'https://github.com/sofiacastrillon/challenge-onboarding-backend',
       Environment: getEnv(Env.STAGE, 'development'),
       Owner: 'Ledger', // Validar en https://opsless.alegra.com/ el nombre del owner
       IsCritical: 'true',
@@ -36,5 +36,4 @@ app.setSharedLayer('dist/layers/common', {
   layerVersionName: `${PROJECT_NAME}-common-layer`,
 });
 
-Outbox.build(app);
-Example.build(app);
+Training.build(app);

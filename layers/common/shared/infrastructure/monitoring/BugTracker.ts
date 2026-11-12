@@ -1,5 +1,5 @@
 import { AWSLambda, captureException } from '@sentry/serverless';
-import { Handler } from 'aws-cdk-lib/aws-lambda';
+import type { Handler } from 'aws-cdk-lib/aws-lambda';
 import { Env } from '../../domain/interfaces/IEnvironment';
 import { getEnv } from '../../../utils/Utils';
 

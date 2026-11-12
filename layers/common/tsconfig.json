@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "rootDir": ".",
     "outDir": "../../dist/layers/common/nodejs",
     "typeRoots": ["./node_modules/@types"],
     "target": "ES2020",
