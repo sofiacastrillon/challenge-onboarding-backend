@@ -23,5 +23,13 @@ export class Training {
       .addAuthorizer(Authorizer)
       .addTablePermissions(getOutputValueByEnv(Env.TRAINING_TABLE_ARN))
       .environment(commonTrainingEnv);
+
+    app
+      .lambda(`${LAMBDAS_BASE_PATH}/training/read-all`)
+      .name(`${PROJECT_NAME}-read-all-training`)
+      .get(`/${CURRENT_API_VERSION}/training`)
+      .addAuthorizer(Authorizer)
+      .addTablePermissions(getOutputValueByEnv(Env.TRAINING_TABLE_ARN))
+      .environment(commonTrainingEnv);
   }
 }
