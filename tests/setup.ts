@@ -8,6 +8,8 @@ import { ExampleRepository } from '../layers/common/context/Example/domain/Examp
 import { MockExampleRepository } from './mocks/context/Example/infrastructure/MockExampleRepository';
 import { TrainingRepository } from '../layers/common/context/Training/domain/TrainingRepository';
 import { MockTrainingRepository } from './mocks/context/Training/infrastructure/MockTrainingRepository';
+import { TrainingEventPublisher } from '../layers/common/context/Training/domain/TrainingEventPublisher';
+import { MockTrainingEventPublisher } from './mocks/context/Training/infrastructure/MockTrainingEventPublisher';
 import { TOKENS } from '../layers/common/shared/application/di/Tokens';
 import { NotificationService } from '../layers/common/shared/domain/services/NotificationService';
 import { StorageRepository } from '../layers/common/shared/domain/StorageRepository';
@@ -30,6 +32,11 @@ beforeEach(() => {
   DependencyInjection.registerSingleton<TrainingRepository>(
     TOKENS.TrainingRepository,
     MockTrainingRepository,
+  );
+
+  DependencyInjection.registerSingleton<TrainingEventPublisher>(
+    TOKENS.TrainingEventPublisher,
+    MockTrainingEventPublisher,
   );
 
   DependencyInjection.registerSingleton<NotificationService>(

@@ -13,6 +13,10 @@ export const Env = {
   TRAINING_TABLE_NAME: 'TRAINING_TABLE_NAME',
   TRAINING_TABLE_ARN: 'TRAINING_TABLE_ARN',
   TRAINING_TOPIC_ARN: 'TRAINING_TOPIC_ARN',
+  TRAINING_QUEUE_ARN: 'TRAINING_QUEUE_ARN',
+  CONFLUENT_BOOTSTRAP_SERVER: 'CONFLUENT_BOOTSTRAP_SERVER',
+  CONFLUENT_SCHEMA_REGISTRY_URL: 'CONFLUENT_SCHEMA_REGISTRY_URL',
+  KAFKA_TOPIC: 'KAFKA_TOPIC',
 };
 
 enum DynamoTableKeys {
@@ -27,9 +31,9 @@ enum SnsTopicKeys {
   TRAINING = 'training-topic',
 }
 
-// enum SqsQueueKeys {
-//   EXAMPLE_ENTITY = 'example-queue-entity',
-// }
+enum SqsQueueKeys {
+  TRAINING = 'training-queue',
+}
 
 export const OutputEnvMap = {
   [Env.EXAMPLES_TABLE_NAME]: { key: DynamoTableKeys.EXAMPLES, suffix: 'name' },
@@ -51,6 +55,7 @@ export const OutputEnvMap = {
   [Env.TRAINING_TABLE_NAME]: { key: DynamoTableKeys.TRAINING, suffix: 'name' },
   [Env.TRAINING_TABLE_ARN]: { key: DynamoTableKeys.TRAINING, suffix: 'arn' },
   [Env.TRAINING_TOPIC_ARN]: { key: SnsTopicKeys.TRAINING, suffix: 'arn' },
+  [Env.TRAINING_QUEUE_ARN]: { key: SqsQueueKeys.TRAINING, suffix: 'arn' },
 };
 
 export type Env = (typeof Env)[keyof typeof Env];

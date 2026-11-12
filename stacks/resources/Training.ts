@@ -1,3 +1,4 @@
+import { Aws, Duration } from 'aws-cdk-lib';
 import { CdkLess } from '@alegradev/cdkless';
 import {
   CURRENT_API_VERSION,
@@ -48,5 +49,25 @@ export class Training {
       .name(`${PROJECT_NAME}-training-event-subscriber`)
       .addSnsTrigger(getOutputValueByEnv(Env.TRAINING_TOPIC_ARN))
       .environment(getCommonEnv());
+
+    app
+      .lambda(`${LAMBDAS_BASE_PATH}/training/sqs-to-kafka`)
+      .name(`${PROJECT_NAME}-sqs-to-kafka`)
+      .timeout(Duration.seconds(30))
+      .addSqsTrigger(getOutputValueByEnv(Env.TRAINING_QUEUE_ARN), {
+        batchSize: 1,
+      })
+      .addPolicy(
+        `arn:aws:ssm:${Aws.REGION}:${Aws.ACCOUNT_ID}:parameter/challenge-onboarding-sofia/confluent/*`,
+        ['ssm:GetParameter', 'ssm:GetParameters'],
+      )
+      .environment({
+        ...getCommonEnv(),
+        [Env.CONFLUENT_BOOTSTRAP_SERVER]:
+          'pkc-p11xm.us-east-1.aws.confluent.cloud:9092',
+        [Env.CONFLUENT_SCHEMA_REGISTRY_URL]:
+          'https://psrc-zj6ny.us-east-2.aws.confluent.cloud',
+        [Env.KAFKA_TOPIC]: 'revops-training-events-sofia-castrillon',
+      });
   }
 }
