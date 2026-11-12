@@ -42,5 +42,11 @@ export class Training {
         ...getCommonEnv(),
         [Env.TRAINING_TOPIC_ARN]: getOutputValueByEnv(Env.TRAINING_TOPIC_ARN),
       });
+
+    app
+      .lambda(`${LAMBDAS_BASE_PATH}/training/training-event-subscriber`)
+      .name(`${PROJECT_NAME}-training-event-subscriber`)
+      .addSnsTrigger(getOutputValueByEnv(Env.TRAINING_TOPIC_ARN))
+      .environment(getCommonEnv());
   }
 }
