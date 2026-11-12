@@ -31,5 +31,16 @@ export class Training {
       .addAuthorizer(Authorizer)
       .addTablePermissions(getOutputValueByEnv(Env.TRAINING_TABLE_ARN))
       .environment(commonTrainingEnv);
+
+    app
+      .lambda(`${LAMBDAS_BASE_PATH}/training/send-event`)
+      .name(`${PROJECT_NAME}-send-training-event`)
+      .post(`/${CURRENT_API_VERSION}/training/send-event`)
+      .addAuthorizer(Authorizer)
+      .addPolicy(getOutputValueByEnv(Env.TRAINING_TOPIC_ARN), ['sns:Publish'])
+      .environment({
+        ...getCommonEnv(),
+        [Env.TRAINING_TOPIC_ARN]: getOutputValueByEnv(Env.TRAINING_TOPIC_ARN),
+      });
   }
 }

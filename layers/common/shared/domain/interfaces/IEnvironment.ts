@@ -12,6 +12,7 @@ export const Env = {
   LAMBDA_AUTHORIZER_ARN: 'LAMBDA_AUTHORIZER_ARN',
   TRAINING_TABLE_NAME: 'TRAINING_TABLE_NAME',
   TRAINING_TABLE_ARN: 'TRAINING_TABLE_ARN',
+  TRAINING_TOPIC_ARN: 'TRAINING_TOPIC_ARN',
 };
 
 enum DynamoTableKeys {
@@ -23,6 +24,7 @@ enum DynamoTableKeys {
 
 enum SnsTopicKeys {
   EXAMPLE_ENTITY = 'example-topic-entity',
+  TRAINING = 'training-topic',
 }
 
 // enum SqsQueueKeys {
@@ -48,6 +50,7 @@ export const OutputEnvMap = {
   },
   [Env.TRAINING_TABLE_NAME]: { key: DynamoTableKeys.TRAINING, suffix: 'name' },
   [Env.TRAINING_TABLE_ARN]: { key: DynamoTableKeys.TRAINING, suffix: 'arn' },
+  [Env.TRAINING_TOPIC_ARN]: { key: SnsTopicKeys.TRAINING, suffix: 'arn' },
 };
 
 export type Env = (typeof Env)[keyof typeof Env];
