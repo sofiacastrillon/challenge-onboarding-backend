@@ -4,6 +4,8 @@ import {
 } from '../../../shared/infrastructure/persistence/DynamoRepository';
 import { TrainingRepository } from '../domain/TrainingRepository';
 import { Training } from '../domain/Training';
+import { ITraining } from '../domain/ITraining';
+import { IdCompany } from '../../../shared/domain/valueObjects/IdCompany';
 import { Env } from '../../../shared/domain/interfaces/IEnvironment';
 import { getEnv } from '../../../utils/Utils';
 
@@ -44,5 +46,24 @@ export class DynamoTrainingRepository
   async create(training: Training): Promise<Training> {
     const saved = await this.saveItem(this.toDynamoItem(training), true);
     return Training.fromObject(saved);
+  }
+
+  async findAll(idCompany: IdCompany): Promise<Training[]> {
+    const result = await this.query({
+      TableName: this.tableName,
+      KeyConditionExpression: '#pk = :pk AND begins_with(#sk, :sk)',
+      ExpressionAttributeNames: {
+        '#pk': 'pk',
+        '#sk': 'sk',
+      },
+      ExpressionAttributeValues: {
+        ':pk': this.getPk(idCompany.value),
+        ':sk': TRAINING_TAG,
+      },
+    });
+
+    return (result.Items ?? []).map((item: ITraining) =>
+      Training.fromObject(item),
+    );
   }
 }
