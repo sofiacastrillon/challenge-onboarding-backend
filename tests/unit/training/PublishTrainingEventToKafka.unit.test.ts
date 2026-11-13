@@ -27,4 +27,34 @@ describe('Publish Training Event To Kafka', () => {
     });
     expect(publisher.messages).toEqual([result]);
   });
+
+  test('throws and does not publish when the timestamp is even', async () => {
+    const publishTrainingEventToKafka = DependencyInjection.resolve(
+      PublishTrainingEventToKafka,
+    );
+    const publisher = DependencyInjection.resolve<MockTrainingEventPublisher>(
+      TOKENS.TrainingEventPublisher,
+    );
+
+    await expect(
+      publishTrainingEventToKafka.run({ ...payload, timestamp: 1794431908 }),
+    ).rejects.toThrow('Intentional failure');
+    expect(publisher.messages).toEqual([]);
+  });
+
+  test('publishes when the timestamp is odd', async () => {
+    const publishTrainingEventToKafka = DependencyInjection.resolve(
+      PublishTrainingEventToKafka,
+    );
+    const publisher = DependencyInjection.resolve<MockTrainingEventPublisher>(
+      TOKENS.TrainingEventPublisher,
+    );
+
+    await publishTrainingEventToKafka.run({
+      ...payload,
+      timestamp: 1794431907,
+    });
+
+    expect(publisher.messages).toHaveLength(1);
+  });
 });

@@ -15,6 +15,12 @@ export class PublishTrainingEventToKafka {
   ) {}
 
   async run(dto: SendTrainingEventDTO): Promise<ITrainingKafkaMessage> {
+    if (dto.timestamp % 2 === 0) {
+      throw new Error(
+        `Intentional failure: timestamp ${dto.timestamp} is even, message is returned to the queue`,
+      );
+    }
+
     const message: ITrainingKafkaMessage = {
       text: TRAINING_KAFKA_TEXT,
       eventType: dto.eventType,
