@@ -17,6 +17,7 @@ The SQS body is the envelope `{ payload, type }`. `type` must be `TrainingEventS
 - The Avro schema requires `text`, `eventType`, `datetime` and `timestamp`
 - `timestamp` is encoded as an Avro `long`
 - The Schema Registry rejects a message that does not match the schema, and the message stays in the queue
+- If `timestamp` is even, the use case throws an intentional error before publishing, so the message returns to the queue (see spec 12)
 
 ## Output
 
