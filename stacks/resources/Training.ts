@@ -51,6 +51,21 @@ export class Training {
       .environment(getCommonEnv());
 
     app
+      .lambda(`${LAMBDAS_BASE_PATH}/training/hubspot-webhook`)
+      .name(`${PROJECT_NAME}-hubspot-webhook`)
+      .post(`/${CURRENT_API_VERSION}/training/hubspot-webhook`)
+      .addTablePermissions(getOutputValueByEnv(Env.TRAINING_TABLE_ARN))
+      .addPolicy(getOutputValueByEnv(Env.TRAINING_TOPIC_ARN), ['sns:Publish'])
+      .addPolicy(
+        `arn:aws:ssm:${Aws.REGION}:${Aws.ACCOUNT_ID}:parameter/challenge-onboarding-sofia/hubspot/*`,
+        ['ssm:GetParameter'],
+      )
+      .environment({
+        ...commonTrainingEnv,
+        [Env.TRAINING_TOPIC_ARN]: getOutputValueByEnv(Env.TRAINING_TOPIC_ARN),
+      });
+
+    app
       .lambda(`${LAMBDAS_BASE_PATH}/training/sqs-to-kafka`)
       .name(`${PROJECT_NAME}-sqs-to-kafka`)
       .timeout(Duration.seconds(30))

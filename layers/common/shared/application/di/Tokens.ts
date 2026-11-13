@@ -5,6 +5,8 @@ export const TOKENS = {
   ExampleRepository: 'ExampleRepository',
   TrainingRepository: 'TrainingRepository',
   TrainingEventPublisher: 'TrainingEventPublisher',
+  HubSpotEventRepository: 'HubSpotEventRepository',
+  HubSpotSignatureVerifier: 'HubSpotSignatureVerifier',
   EventBus: 'EventBus',
 
   // Use Cases
