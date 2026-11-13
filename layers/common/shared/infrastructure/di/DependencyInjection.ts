@@ -7,6 +7,7 @@ import { OutboxRepository } from '../../../context/Outbox/domain/OutboxRepositor
 import { StorageRepository } from '../../domain/StorageRepository';
 import { ExampleRepository } from '../../../context/Example/domain/ExampleRepository';
 import { TrainingRepository } from '../../../context/Training/domain/TrainingRepository';
+import { TrainingEventPublisher } from '../../../context/Training/domain/TrainingEventPublisher';
 
 // 🏭 Implements
 import { SnsNotificationService } from '../notification/SnsNotificationService';
@@ -14,6 +15,7 @@ import { DynamoOutboxRepository } from '../../../context/Outbox/infrastructure/D
 import { S3Repository } from '../persistence/S3Repository';
 import { DynamoExampleRepository } from '../../../context/Example/infrastructure/DynamoExampleRepository';
 import { DynamoTrainingRepository } from '../../../context/Training/infrastructure/DynamoTrainingRepository';
+import { ConfluentTrainingEventPublisher } from '../../../context/Training/infrastructure/ConfluentTrainingEventPublisher';
 import { TOKENS } from '../../application/di/Tokens';
 import { EventBus } from '../../application/EventBus';
 import { setupUseCasesInjection } from './UseCasesInjection';
@@ -36,6 +38,10 @@ container.register<ExampleRepository>(TOKENS.ExampleRepository, {
 
 container.register<TrainingRepository>(TOKENS.TrainingRepository, {
   useClass: DynamoTrainingRepository,
+});
+
+container.register<TrainingEventPublisher>(TOKENS.TrainingEventPublisher, {
+  useClass: ConfluentTrainingEventPublisher,
 });
 
 container.registerSingleton<EventBus>(TOKENS.EventBus, EventBus);

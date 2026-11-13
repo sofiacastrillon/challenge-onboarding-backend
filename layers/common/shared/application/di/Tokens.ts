@@ -4,6 +4,7 @@ export const TOKENS = {
   StorageRepository: 'StorageRepository',
   ExampleRepository: 'ExampleRepository',
   TrainingRepository: 'TrainingRepository',
+  TrainingEventPublisher: 'TrainingEventPublisher',
   EventBus: 'EventBus',
 
   // Use Cases
