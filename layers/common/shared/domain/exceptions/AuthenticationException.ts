@@ -1,7 +1,7 @@
 export default class AuthenticationException extends Error {
   readonly statusCode = 401;
 
-  constructor() {
-    super('Unauthorized');
+  constructor(message: string = 'Unauthorized') {
+    super(message);
   }
 }

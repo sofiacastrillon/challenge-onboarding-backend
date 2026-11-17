@@ -13,7 +13,7 @@
     "deploy": "npm run compile-layer && cdk deploy --all --require-approval never",
     "destroy": "cdk destroy --all",
     "lint": "eslint . && tsc --noEmit",
-    "compile-layer": "tsc --project ./layers/common/tsconfig.json && ncp ./layers/common/node_modules ./dist/layers/common/nodejs/node_modules",
+    "compile-layer": "tsc --project ./layers/common/tsconfig.json && node scripts/copy-layer-modules.cjs",
     "prepare": "husky install",
     "dev": "lambda-run ui",
     "prettify": "prettier --write .",

@@ -6,6 +6,7 @@ import { IdCompany } from './valueObjects/IdCompany';
 export const EntityTypeValue = {
   EXAMPLE: 'EXAMPLE',
   OUTBOX: 'OUTBOX',
+  TRAINING: 'TRAINING',
 } as const;
 
 export type EntityTypeValue =

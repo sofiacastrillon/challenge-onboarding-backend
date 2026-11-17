@@ -6,6 +6,18 @@ import { MockOutboxRepository } from './mocks/context/Outbox/infrastructure/Mock
 import { OutboxRepository } from '../layers/common/context/Outbox/domain/OutboxRepository';
 import { ExampleRepository } from '../layers/common/context/Example/domain/ExampleRepository';
 import { MockExampleRepository } from './mocks/context/Example/infrastructure/MockExampleRepository';
+import { TrainingRepository } from '../layers/common/context/Training/domain/TrainingRepository';
+import { MockTrainingRepository } from './mocks/context/Training/infrastructure/MockTrainingRepository';
+import { TrainingEventPublisher } from '../layers/common/context/Training/domain/TrainingEventPublisher';
+import { MockTrainingEventPublisher } from './mocks/context/Training/infrastructure/MockTrainingEventPublisher';
+import { HubSpotEventRepository } from '../layers/common/context/Training/domain/HubSpotEventRepository';
+import { MockHubSpotEventRepository } from './mocks/context/Training/infrastructure/MockHubSpotEventRepository';
+import { HubSpotSignatureVerifier } from '../layers/common/context/Training/domain/HubSpotSignatureVerifier';
+import { MockHubSpotSignatureVerifier } from './mocks/context/Training/infrastructure/MockHubSpotSignatureVerifier';
+import { TrainingAgent } from '../layers/common/context/Training/domain/TrainingAgent';
+import { MockTrainingAgent } from './mocks/context/Training/infrastructure/MockTrainingAgent';
+import { TrainingConversationRepository } from '../layers/common/context/Training/domain/TrainingConversationRepository';
+import { MockTrainingConversationRepository } from './mocks/context/Training/infrastructure/MockTrainingConversationRepository';
 import { TOKENS } from '../layers/common/shared/application/di/Tokens';
 import { NotificationService } from '../layers/common/shared/domain/services/NotificationService';
 import { StorageRepository } from '../layers/common/shared/domain/StorageRepository';
@@ -23,6 +35,36 @@ beforeEach(() => {
   DependencyInjection.registerSingleton<ExampleRepository>(
     TOKENS.ExampleRepository,
     MockExampleRepository,
+  );
+
+  DependencyInjection.registerSingleton<TrainingRepository>(
+    TOKENS.TrainingRepository,
+    MockTrainingRepository,
+  );
+
+  DependencyInjection.registerSingleton<TrainingEventPublisher>(
+    TOKENS.TrainingEventPublisher,
+    MockTrainingEventPublisher,
+  );
+
+  DependencyInjection.registerSingleton<HubSpotEventRepository>(
+    TOKENS.HubSpotEventRepository,
+    MockHubSpotEventRepository,
+  );
+
+  DependencyInjection.registerSingleton<HubSpotSignatureVerifier>(
+    TOKENS.HubSpotSignatureVerifier,
+    MockHubSpotSignatureVerifier,
+  );
+
+  DependencyInjection.registerSingleton<TrainingAgent>(
+    TOKENS.TrainingAgent,
+    MockTrainingAgent,
+  );
+
+  DependencyInjection.registerSingleton<TrainingConversationRepository>(
+    TOKENS.TrainingConversationRepository,
+    MockTrainingConversationRepository,
   );
 
   DependencyInjection.registerSingleton<NotificationService>(

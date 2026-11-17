@@ -3,6 +3,12 @@ export const TOKENS = {
   NotificationService: 'NotificationService',
   StorageRepository: 'StorageRepository',
   ExampleRepository: 'ExampleRepository',
+  TrainingRepository: 'TrainingRepository',
+  TrainingEventPublisher: 'TrainingEventPublisher',
+  HubSpotEventRepository: 'HubSpotEventRepository',
+  HubSpotSignatureVerifier: 'HubSpotSignatureVerifier',
+  TrainingAgent: 'TrainingAgent',
+  TrainingConversationRepository: 'TrainingConversationRepository',
   EventBus: 'EventBus',
 
   // Use Cases

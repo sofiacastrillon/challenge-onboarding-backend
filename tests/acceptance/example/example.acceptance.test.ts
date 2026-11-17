@@ -62,8 +62,9 @@ describe('Example acceptance tests', () => {
   it('Given a Example Data, when we update a example, then we receive a successful response', async () => {
     const updatedExample = {
       ...expectedExample,
-      name: faker.lorem.word(18),
-      description: faker.lorem.sentence(2),
+      // Keep within CreateExampleSchema: name min 5 chars, description max 100.
+      name: faker.lorem.word({ length: { min: 5, max: 15 } }),
+      description: faker.lorem.sentence({ min: 2, max: 4 }),
     };
 
     const result = await updateExample(
