@@ -66,6 +66,22 @@ export class Training {
       });
 
     app
+      .lambda(`${LAMBDAS_BASE_PATH}/training/agent`)
+      .name(`${PROJECT_NAME}-training-agent`)
+      .timeout(Duration.seconds(30))
+      .post(`/${CURRENT_API_VERSION}/training/agent`)
+      .addAuthorizer(Authorizer)
+      .addTablePermissions(getOutputValueByEnv(Env.TRAINING_TABLE_ARN))
+      .addPolicy(
+        `arn:aws:ssm:${Aws.REGION}:${Aws.ACCOUNT_ID}:parameter/challenge-onboarding-sofia/agent/*`,
+        ['ssm:GetParameter'],
+      )
+      .environment({
+        ...commonTrainingEnv,
+        TRAINING_AGENT_MODEL: 'openai/gpt-4.1-mini',
+      });
+
+    app
       .lambda(`${LAMBDAS_BASE_PATH}/training/sqs-to-kafka`)
       .name(`${PROJECT_NAME}-sqs-to-kafka`)
       .timeout(Duration.seconds(30))

@@ -11,6 +11,9 @@
   "dependencies": {
     "@aws-sdk/client-ssm": "^3.1168.0",
     "@kafkajs/confluent-schema-registry": "^3.9.0",
+    "@langchain/core": "^1.4.1",
+    "@langchain/langgraph": "^1.7.4",
+    "@langchain/openai": "^1.5.8",
     "@sentry/serverless": "^7.120.3",
     "kafkajs": "^2.2.4",
     "reflect-metadata": "^0.2.2",
