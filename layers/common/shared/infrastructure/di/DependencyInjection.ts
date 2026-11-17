@@ -10,6 +10,8 @@ import { TrainingRepository } from '../../../context/Training/domain/TrainingRep
 import { TrainingEventPublisher } from '../../../context/Training/domain/TrainingEventPublisher';
 import { HubSpotEventRepository } from '../../../context/Training/domain/HubSpotEventRepository';
 import { HubSpotSignatureVerifier } from '../../../context/Training/domain/HubSpotSignatureVerifier';
+import { TrainingAgent } from '../../../context/Training/domain/TrainingAgent';
+import { TrainingConversationRepository } from '../../../context/Training/domain/TrainingConversationRepository';
 
 // 🏭 Implements
 import { SnsNotificationService } from '../notification/SnsNotificationService';
@@ -20,6 +22,8 @@ import { DynamoTrainingRepository } from '../../../context/Training/infrastructu
 import { ConfluentTrainingEventPublisher } from '../../../context/Training/infrastructure/ConfluentTrainingEventPublisher';
 import { DynamoHubSpotEventRepository } from '../../../context/Training/infrastructure/DynamoHubSpotEventRepository';
 import { SsmHubSpotSignatureVerifier } from '../../../context/Training/infrastructure/SsmHubSpotSignatureVerifier';
+import { LangGraphTrainingAgent } from '../../../context/Training/infrastructure/LangGraphTrainingAgent';
+import { DynamoTrainingConversationRepository } from '../../../context/Training/infrastructure/DynamoTrainingConversationRepository';
 import { TOKENS } from '../../application/di/Tokens';
 import { EventBus } from '../../application/EventBus';
 import { setupUseCasesInjection } from './UseCasesInjection';
@@ -55,6 +59,17 @@ container.register<HubSpotEventRepository>(TOKENS.HubSpotEventRepository, {
 container.register<HubSpotSignatureVerifier>(TOKENS.HubSpotSignatureVerifier, {
   useClass: SsmHubSpotSignatureVerifier,
 });
+
+container.register<TrainingAgent>(TOKENS.TrainingAgent, {
+  useClass: LangGraphTrainingAgent,
+});
+
+container.register<TrainingConversationRepository>(
+  TOKENS.TrainingConversationRepository,
+  {
+    useClass: DynamoTrainingConversationRepository,
+  },
+);
 
 container.registerSingleton<EventBus>(TOKENS.EventBus, EventBus);
 
